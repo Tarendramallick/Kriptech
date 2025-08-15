@@ -62,7 +62,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <Spline scene="https://prod.spline.design/BIoqoH9elfCn8oRl/scene.splinecode" />
+          <Spline scene="/scenes/space.splinecode" />
         </div>
 
         <Button

@@ -40,7 +40,7 @@ export default function ContactPage() {
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <Header />
       <div className="flex-1 w-full">
-        <Spline scene="https://prod.spline.design/95Ie0dokMEzK2Z0v/scene.splinecode" />
+        <Spline scene="/scenes/robo.splinecode" />
       </div>
 
       <Button
