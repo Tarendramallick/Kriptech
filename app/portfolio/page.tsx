@@ -100,7 +100,7 @@ export default function PortfolioPage() {
 
       <section className="relative h-screen overflow-hidden">
         <Spline
-          scene="https://prod.spline.design/QhkEGUtRETSxJvlB/scene.splinecode"
+          scene="/scenes/porfolio.splinecode"
           className="absolute inset-0 w-full h-full"
         />
 
