@@ -9,82 +9,82 @@ import { Star, ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react
 import Link from "next/link"
 import Spline from "@splinetool/react-spline/next"
 
-export default function TestimonialsPage() {
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      company: "TechStart Solutions",
-      role: "CEO",
-      content:
-        "WebCraft Studios transformed our vision into a stunning website that perfectly represents our brand. Their attention to detail and professionalism exceeded our expectations. The team was responsive, creative, and delivered exactly what we needed.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "Corporate Website Redesign",
-      results: "150% increase in lead generation",
-      featured: true,
-    },
-    {
-      name: "Michael Chen",
-      company: "EcoShop Marketplace",
-      role: "Founder",
-      content:
-        "The e-commerce platform they built for us has been a game-changer. Sales increased by 300% in the first quarter after launch. The multi-vendor functionality works flawlessly, and our customers love the user experience.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "E-commerce Platform Development",
-      results: "$2M+ in transactions processed",
-      featured: true,
-    },
-    {
-      name: "Emily Rodriguez",
-      company: "FitLife Wellness",
-      role: "Marketing Director",
-      content:
-        "Working with WebCraft Studios was a pleasure from start to finish. They delivered on time, within budget, and the results speak for themselves. The booking system has streamlined our operations significantly.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "Wellness Platform Development",
-      results: "5000+ active members",
-      featured: false,
-    },
-    {
-      name: "David Thompson",
-      company: "ArtSpace Gallery",
-      role: "Gallery Owner",
-      content:
-        "They created a beautiful, artistic website that showcases our gallery perfectly. The virtual tour feature has brought in visitors from around the world. The 3D integration is absolutely stunning.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "Creative Portfolio Website",
-      results: "300% increase in virtual visits",
-      featured: false,
-    },
-    {
-      name: "Jennifer Park",
-      company: "LocalEats Restaurant",
-      role: "Owner",
-      content:
-        "Our online ordering system has revolutionized our business. The integration with our POS system is seamless, and customers love how easy it is to place orders. Revenue from online orders increased by 40%.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "Restaurant Website & Ordering System",
-      results: "40% increase in online orders",
-      featured: false,
-    },
-    {
-      name: "Dr. Robert Kim",
-      company: "EduLearn Platform",
-      role: "Educational Director",
-      content:
-        "The learning management system they built exceeded our expectations. The user interface is intuitive, and the progress tracking features help both students and instructors. We've enrolled over 10,000 students.",
-      rating: 5,
-      avatar: "/placeholder.svg?height=80&width=80",
-      project: "Educational Platform Development",
-      results: "10,000+ students enrolled",
-      featured: true,
-    },
-  ]
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    company: "TechStart Solutions",
+    role: "CEO",
+    content:
+      "WebCraft Studios transformed our vision into a stunning website that perfectly represents our brand. Their attention to detail and professionalism exceeded our expectations. The team was responsive, creative, and delivered exactly what we needed.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "Corporate Website Redesign",
+    results: "150% increase in lead generation",
+    featured: true,
+  },
+  {
+    name: "Michael Chen",
+    company: "EcoShop Marketplace",
+    role: "Founder",
+    content:
+      "The e-commerce platform they built for us has been a game-changer. Sales increased by 300% in the first quarter after launch. The multi-vendor functionality works flawlessly, and our customers love the user experience.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "E-commerce Platform Development",
+    results: "$2M+ in transactions processed",
+    featured: true,
+  },
+  {
+    name: "Emily Rodriguez",
+    company: "FitLife Wellness",
+    role: "Marketing Director",
+    content:
+      "Working with WebCraft Studios was a pleasure from start to finish. They delivered on time, within budget, and the results speak for themselves. The booking system has streamlined our operations significantly.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "Wellness Platform Development",
+    results: "5000+ active members",
+    featured: false,
+  },
+  {
+    name: "David Thompson",
+    company: "ArtSpace Gallery",
+    role: "Gallery Owner",
+    content:
+      "They created a beautiful, artistic website that showcases our gallery perfectly. The virtual tour feature has brought in visitors from around the world. The 3D integration is absolutely stunning.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "Creative Portfolio Website",
+    results: "300% increase in virtual visits",
+    featured: false,
+  },
+  {
+    name: "Jennifer Park",
+    company: "LocalEats Restaurant",
+    role: "Owner",
+    content:
+      "Our online ordering system has revolutionized our business. The integration with our POS system is seamless, and customers love how easy it is to place orders. Revenue from online orders increased by 40%.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "Restaurant Website & Ordering System",
+    results: "40% increase in online orders",
+    featured: false,
+  },
+  {
+    name: "Dr. Robert Kim",
+    company: "EduLearn Platform",
+    role: "Educational Director",
+    content:
+      "The learning management system they built exceeded our expectations. The user interface is intuitive, and the progress tracking features help both students and instructors. We've enrolled over 10,000 students.",
+    rating: 5,
+    avatar: "/placeholder.svg?height=80&width=80",
+    project: "Educational Platform Development",
+    results: "10,000+ students enrolled",
+    featured: true,
+  },
+]
 
+export default function TestimonialsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function TestimonialsPage() {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [testimonials.length])
+  }, [])
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
@@ -109,7 +109,7 @@ export default function TestimonialsPage() {
       {/* Hero Section with Spline */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <Spline scene="/scenes/robo.splinecode" />
+          <Spline scene="https://prod.spline.design/BIoqoH9elfCn8oRl/scene.splinecode" />
         </div>
 
         <Button
