@@ -125,7 +125,8 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* Added custom font classes */
+
+  /* Custom font classes */
   .font-heading {
     font-family: var(--font-heading);
   }
