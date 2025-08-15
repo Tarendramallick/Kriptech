@@ -30,7 +30,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="font-heading font-black text-2xl text-primary hover:opacity-80 transition-opacity">
-            WebCraft Studios
+            Kriptech
           </Link>
 
           {/* Desktop Navigation */}

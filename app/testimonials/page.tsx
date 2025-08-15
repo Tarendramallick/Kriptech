@@ -109,7 +109,7 @@ export default function TestimonialsPage() {
       {/* Hero Section with Spline */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <Spline scene="/scenes/space.splinecode" />
+          <Spline scene="/scenes/robo.splinecode" />
         </div>
 
         <Button
