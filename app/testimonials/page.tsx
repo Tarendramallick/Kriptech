@@ -7,7 +7,16 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star, ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react"
 import Link from "next/link"
-import Spline from "@splinetool/react-spline/next"
+import dynamic from "next/dynamic"
+
+const Spline = dynamic(() => import("@splinetool/react-spline/next"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-black flex items-center justify-center">
+      <div className="text-white">Loading 3D Scene...</div>
+    </div>
+  ),
+})
 
 const testimonials = [
   {
@@ -86,21 +95,51 @@ const testimonials = [
 
 export default function TestimonialsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
+    if (testimonials.length === 0) return
+
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
     }, 6000)
+
     return () => clearInterval(timer)
-  }, [])
+  }, [isClient])
 
   const nextTestimonial = () => {
+    if (testimonials.length === 0) return
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
   }
 
   const prevTestimonial = () => {
+    if (testimonials.length === 0) return
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
   }
+
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    )
+  }
+
+  if (testimonials.length === 0) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white">No testimonials available</div>
+      </div>
+    )
+  }
+
+  const currentTestimonial = testimonials[currentIndex] || testimonials[0]
 
   return (
     <div className="min-h-screen bg-black">
@@ -109,7 +148,9 @@ export default function TestimonialsPage() {
       {/* Hero Section with Spline */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <Spline scene="/scenes/space.splinecode" />
+          <div className="w-full h-full">
+            <Spline scene="/scenes/space.splinecode" />
+          </div>
         </div>
 
         <Button
@@ -147,35 +188,35 @@ export default function TestimonialsPage() {
                   <div className="md:col-span-2">
                     <Quote className="h-12 w-12 text-purple-600/20 mb-4" />
                     <div className="flex mb-4">
-                      {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                      {[...Array(currentTestimonial?.rating || 5)].map((_, i) => (
                         <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
                     <blockquote className="text-lg md:text-xl text-black mb-6 leading-relaxed">
-                      "{testimonials[currentIndex].content}"
+                      "{currentTestimonial?.content || "Loading testimonial..."}"
                     </blockquote>
                     <div className="flex items-center space-x-4 mb-4">
                       <img
-                        src={testimonials[currentIndex].avatar || "/placeholder.svg"}
-                        alt={testimonials[currentIndex].name}
+                        src={currentTestimonial?.avatar || "/placeholder.svg"}
+                        alt={currentTestimonial?.name || "Client"}
                         className="w-12 h-12 rounded-full object-cover"
                       />
                       <div>
                         <div className="font-heading font-bold text-lg text-black">
-                          {testimonials[currentIndex].name}
+                          {currentTestimonial?.name || "Client Name"}
                         </div>
-                        <div className="text-purple-600 font-semibold">{testimonials[currentIndex].role}</div>
-                        <div className="text-gray-600">{testimonials[currentIndex].company}</div>
+                        <div className="text-purple-600 font-semibold">{currentTestimonial?.role || "Role"}</div>
+                        <div className="text-gray-600">{currentTestimonial?.company || "Company"}</div>
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <Badge variant="outline" className="w-full justify-center py-2">
-                      {testimonials[currentIndex].project}
+                      {currentTestimonial?.project || "Project"}
                     </Badge>
                     <div className="text-center p-4 bg-green-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Results Achieved</div>
-                      <div className="font-bold text-green-600">{testimonials[currentIndex].results}</div>
+                      <div className="font-bold text-green-600">{currentTestimonial?.results || "Great Results"}</div>
                     </div>
                   </div>
                 </div>
