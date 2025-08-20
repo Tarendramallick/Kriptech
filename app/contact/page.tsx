@@ -39,8 +39,8 @@ export default function ContactPage() {
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <Header />
-      <div className="flex-1 w-full">
-        <Spline scene="/scenes/robo.splinecode" />
+      <div className="flex-1 w-full"> 
+        <Spline scene="/scenes/robo.splinecode" /> 
       </div>
 
       <Button
