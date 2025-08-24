@@ -10,41 +10,26 @@ import Spline from "@splinetool/react-spline/next"
 export default function ServicesPage() {
   const services = [
     {
-      icon: Globe,
+      icon: Web Development,
       title: "Custom Web Development",
       description: "Tailored websites built from scratch to meet your unique business requirements and goals.",
       features: ["Custom Design", "Responsive Layout", "Performance Optimized", "SEO Ready"],
       price: "Starting at $2,500",
     },
     {
-      icon: Smartphone,
+      icon: Mobile Development,
       title: "Responsive Design",
       description: "Mobile-first designs that look perfect and function flawlessly on all devices and screen sizes.",
       features: ["Mobile-First Approach", "Cross-Browser Compatible", "Touch-Friendly Interface", "Fast Loading"],
       price: "Starting at $1,500",
     },
     {
-      icon: ShoppingCart,
+      icon: E-commerce Solutions,
       title: "E-commerce Solutions",
       description:
         "Complete online stores with secure payment processing, inventory management, and user-friendly interfaces.",
       features: ["Payment Integration", "Inventory Management", "Order Tracking", "Admin Dashboard"],
       price: "Starting at $4,000",
-    },
-    {
-      icon: Search,
-      title: "SEO Optimization",
-      description:
-        "Search engine optimization to improve your visibility and drive more organic traffic to your website.",
-      features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Performance Reports"],
-      price: "Starting at $800/month",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Beautiful, intuitive user interfaces designed to enhance user experience and drive conversions.",
-      features: ["User Research", "Wireframing", "Prototyping", "Design System"],
-      price: "Starting at $2,000",
     },
     {
       icon: Settings,
