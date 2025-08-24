@@ -11,20 +11,20 @@ import Spline from "@splinetool/react-spline/next"
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    company: "TechStart Solutions",
+    name: "Jay Mishra",
+    company: "Asylic",
     role: "CEO",
     content:
-      "WebCraft Studios transformed our vision into a stunning website that perfectly represents our brand. Their attention to detail and professionalism exceeded our expectations.",
+      "Kriptech transformed our vision into a stunning website that perfectly represents our brand. Their attention to detail and professionalism exceeded our expectations.",
     rating: 5,
     avatar: "/placeholder.svg?height=80&width=80",
     project: "Corporate Website Redesign",
     results: "150% increase in lead generation",
   },
   {
-    name: "Michael Chen",
-    company: "EcoShop Marketplace",
-    role: "Founder",
+    name: "Tarun Dakalia",
+    company: "Tiffany Watch Straps",
+    role: "Owner",
     content:
       "The e-commerce platform they built for us has been a game-changer. Sales increased by 300% in the first quarter after launch.",
     rating: 5,
@@ -37,7 +37,7 @@ const testimonials = [
     company: "FitLife Wellness",
     role: "Marketing Director",
     content:
-      "Working with WebCraft Studios was a pleasure from start to finish. They delivered on time, within budget, and the results speak for themselves.",
+      "Working with Kriptech was a pleasure from start to finish. They delivered on time, within budget, and the results speak for themselves.",
     rating: 5,
     avatar: "/placeholder.svg?height=80&width=80",
     project: "Wellness Platform Development",
