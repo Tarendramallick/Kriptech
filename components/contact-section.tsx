@@ -65,7 +65,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Call Us</div>
-                  <div className="text-muted-foreground">+91 xxxx-xxxxx</div>
+                  <div className="text-muted-foreground">+91 73880-63166</div>
                 </div>
               </div>
 
