@@ -17,8 +17,7 @@ export function Footer() {
             <ul className="space-y-2 text-primary-foreground/80">
               <li>Web Development</li>
               <li>E-commerce Solutions</li>
-              <li>UI/UX Design</li>
-              <li>SEO Optimization</li>
+              <li>Mobile Development</li>
             </ul>
           </div>
 
@@ -41,7 +40,7 @@ export function Footer() {
               <Instagram className="h-6 w-6 text-primary-foreground/80 hover:text-primary-foreground cursor-pointer transition-colors" />
             </div>
             <p className="text-primary-foreground/80 text-sm">
-              hello@Kriptech.com
+              Kriptech@gmail.com
               <br />
               +1 (555) 123-4567
             </p>
@@ -49,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-          <p>&copy; 2024 Kriptech. All rights reserved.</p>
+          <p>&copy; 2025 Kriptech. All rights reserved.</p>
         </div>
       </div>
     </footer>
