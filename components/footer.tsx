@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <div className="font-heading font-black text-2xl mb-4">WebCraft Studios</div>
+            <div className="font-heading font-black text-2xl mb-4">Kriptech</div>
             <p className="text-primary-foreground/80 leading-relaxed">
               Crafting exceptional web experiences that drive business growth and user engagement.
             </p>
@@ -41,7 +41,7 @@ export function Footer() {
               <Instagram className="h-6 w-6 text-primary-foreground/80 hover:text-primary-foreground cursor-pointer transition-colors" />
             </div>
             <p className="text-primary-foreground/80 text-sm">
-              hello@webcraft-studios.com
+              hello@Kriptech.com
               <br />
               +1 (555) 123-4567
             </p>
@@ -49,7 +49,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-          <p>&copy; 2024 WebCraft Studios. All rights reserved.</p>
+          <p>&copy; 2024 Kriptech. All rights reserved.</p>
         </div>
       </div>
     </footer>
