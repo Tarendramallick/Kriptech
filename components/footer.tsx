@@ -42,7 +42,7 @@ export function Footer() {
             <p className="text-primary-foreground/80 text-sm">
               Kriptech@gmail.com
               <br />
-              +1 (555) 123-4567
+              +91 73880-63166
             </p>
           </div>
         </div>
