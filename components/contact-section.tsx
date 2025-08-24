@@ -55,7 +55,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Email Us</div>
-                  <div className="text-muted-foreground">hello@webcraft-studios.com</div>
+                  <div className="text-muted-foreground">hello@Kriptech.com</div>
                 </div>
               </div>
 
@@ -65,7 +65,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Call Us</div>
-                  <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                  <div className="text-muted-foreground">+91 xxxx-xxxxx</div>
                 </div>
               </div>
 
@@ -75,7 +75,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Visit Us</div>
-                  <div className="text-muted-foreground">123 Web Street, Digital City, DC 12345</div>
+                  <div className="text-muted-foreground">Lucknow,U.P 226002</div>
                 </div>
               </div>
             </div>
