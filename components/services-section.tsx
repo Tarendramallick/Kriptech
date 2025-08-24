@@ -20,17 +20,6 @@ export function ServicesSection() {
         "Complete online stores with secure payment processing, inventory management, and user-friendly interfaces.",
     },
     {
-      icon: Search,
-      title: "SEO Optimization",
-      description:
-        "Search engine optimization to improve your visibility and drive more organic traffic to your website.",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Beautiful, intuitive user interfaces designed to enhance user experience and drive conversions.",
-    },
-    {
       icon: Settings,
       title: "Maintenance & Support",
       description: "Ongoing website maintenance, updates, and technical support to keep your site running smoothly.",
