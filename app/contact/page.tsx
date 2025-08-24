@@ -114,15 +114,15 @@ export default function ContactPage() {
                 <div className="space-y-3 text-sm text-gray-600">
                   <div className="flex items-center">
                     <Mail className="w-4 h-4 mr-3 text-purple-600" />
-                    hello@webdevcompany.com
+                    kriptech@gmail.com
                   </div>
                   <div className="flex items-center">
                     <Phone className="w-4 h-4 mr-3 text-purple-600" />
-                    +1 (555) 123-4567
+                    +91 xxxxx-xxxxx
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-3 text-purple-600" />
-                    123 Web Street, Digital City, DC 12345
+                    Lucknow,U.P 226002
                   </div>
                 </div>
               </div>
