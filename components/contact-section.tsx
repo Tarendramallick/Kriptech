@@ -55,7 +55,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Email Us</div>
-                  <div className="text-muted-foreground">hello@Kriptech.com</div>
+                  <div className="text-muted-foreground">Kriptech@gmail.com</div>
                 </div>
               </div>
 
