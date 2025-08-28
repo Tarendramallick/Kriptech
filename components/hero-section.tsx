@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section className="relative h-screen overflow-hidden">
       <Spline
-        scene="/scenes/hero.splinecode"
+        scene="https://prod.spline.design/eNjM4hxEtYFxNUdL/scene.splinecode"
         className="absolute inset-0 w-full h-full"
       />
       <button
