@@ -16,6 +16,7 @@ export default function ContactPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
+  const [isMounted, setIsMounted] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +27,14 @@ export default function ContactPage() {
   })
 
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+
     const handleSplineEvent = (event: any) => {
+      console.log("[v0] Spline event received:", event.detail)
       if (event.detail?.name === "getInTouch" || event.detail?.type === "mouseDown") {
         router.push("/#contact")
       }
@@ -37,12 +45,14 @@ export default function ContactPage() {
     return () => {
       window.removeEventListener("spline-event", handleSplineEvent)
     }
-  }, [router])
+  }, [router, isMounted])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitMessage("")
+
+    console.log("[v0] Contact form submission started:", formData)
 
     try {
       const response = await fetch("/api/contact", {
@@ -54,6 +64,7 @@ export default function ContactPage() {
       })
 
       const result = await response.json()
+      console.log("[v0] Contact form response:", result)
 
       if (result.success) {
         setSubmitMessage(result.message)
@@ -73,6 +84,7 @@ export default function ContactPage() {
         setSubmitMessage(result.message)
       }
     } catch (error) {
+      console.error("[v0] Contact form error:", error)
       setSubmitMessage("Sorry, there was an error sending your message. Please try again.")
     } finally {
       setIsSubmitting(false)
@@ -86,29 +98,42 @@ export default function ContactPage() {
     }))
   }
 
+  if (!isMounted) {
+    return (
+      <div className="h-screen bg-black flex flex-col overflow-hidden">
+        <Header />
+        <div className="flex-1 w-full relative bg-black flex items-center justify-center">
+          <div className="text-white">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <Header />
       <div className="flex-1 w-full relative">
-        <div className="hidden md:block w-full h-full">
-          <Spline scene="/scenes/robo.splinecode" />
-        </div>
-
-        <div className="md:hidden w-full h-full bg-white flex items-center justify-center">
-          <div className="absolute inset-0">
-            <img
-              src="/modern-web-development-workspace-with-laptop-codin.jpg"
-              alt="Contact us - Web development consultation"
-              className="w-full h-full object-cover opacity-15"
-            />
+        {typeof window !== "undefined" && window.innerWidth >= 768 ? (
+          <div className="w-full h-full">
+            <Spline scene="/scenes/robo.splinecode" />
           </div>
-          <div className="text-center text-gray-900 px-6 animate-fade-in relative z-10">
-            <h1 className="font-heading font-black text-4xl sm:text-5xl mb-6 animate-slide-up">Get In Touch</h1>
-            <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-6 animate-slide-up-delay">
-              Ready to start your project? Let's discuss your vision
-            </p>
+        ) : (
+          <div className="w-full h-full bg-white flex items-center justify-center">
+            <div className="absolute inset-0">
+              <img
+                src="/modern-web-development-workspace-with-laptop-codin.jpg"
+                alt="Contact us - Web development consultation"
+                className="w-full h-full object-cover opacity-15"
+              />
+            </div>
+            <div className="text-center text-gray-900 px-6 animate-fade-in relative z-10">
+              <h1 className="font-heading font-black text-4xl sm:text-5xl mb-6 animate-slide-up">Get In Touch</h1>
+              <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-6 animate-slide-up-delay">
+                Ready to start your project? Let's discuss your vision
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <Button
