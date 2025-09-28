@@ -17,7 +17,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
   const [isMounted, setIsMounted] = useState(false)
-  const [splineLoaded, setSplineLoaded] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -47,10 +46,6 @@ export default function ContactPage() {
       window.removeEventListener("spline-event", handleSplineEvent)
     }
   }, [router, isMounted])
-
-  const handleSplineLoad = () => {
-    setSplineLoaded(true)
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -118,32 +113,27 @@ export default function ContactPage() {
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <Header />
       <div className="flex-1 w-full relative">
-        <div className="hidden md:block w-full h-full">
-          <div className="w-full h-full min-h-[600px] min-w-[800px]">
-            {!splineLoaded && (
-              <div className="absolute inset-0 bg-black flex items-center justify-center z-10">
-                <div className="text-white">Loading 3D Scene...</div>
-              </div>
-            )}
-            <Spline scene="https://prod.spline.design/95Ie0dokMEzK2Z0v/scene.splinecode" onLoad={handleSplineLoad} />
+        {typeof window !== "undefined" && window.innerWidth >= 768 ? (
+          <div className="w-full h-full">
+            <Spline scene="/scenes/robo.splinecode" />
           </div>
-        </div>
-
-        <div className="md:hidden w-full h-full bg-white flex items-center justify-center">
-          <div className="absolute inset-0">
-            <img
-              src="/modern-web-development-workspace-with-laptop-codin.jpg"
-              alt="Contact us - Web development consultation"
-              className="w-full h-full object-cover opacity-15"
-            />
+        ) : (
+          <div className="w-full h-full bg-white flex items-center justify-center">
+            <div className="absolute inset-0">
+              <img
+                src="/modern-web-development-workspace-with-laptop-codin.jpg"
+                alt="Contact us - Web development consultation"
+                className="w-full h-full object-cover opacity-15"
+              />
+            </div>
+            <div className="text-center text-gray-900 px-6 animate-fade-in relative z-10">
+              <h1 className="font-heading font-black text-4xl sm:text-5xl mb-6 animate-slide-up">Get In Touch</h1>
+              <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-6 animate-slide-up-delay">
+                Ready to start your project? Let's discuss your vision
+              </p>
+            </div>
           </div>
-          <div className="text-center text-gray-900 px-6 animate-fade-in relative z-10">
-            <h1 className="font-heading font-black text-4xl sm:text-5xl mb-6 animate-slide-up">Get In Touch</h1>
-            <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-6 animate-slide-up-delay">
-              Ready to start your project? Let's discuss your vision
-            </p>
-          </div>
-        </div>
+        )}
       </div>
 
       <Button
