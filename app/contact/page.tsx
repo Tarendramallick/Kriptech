@@ -9,11 +9,21 @@ import Header from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { X, Mail, Phone, MapPin } from "lucide-react"
+import { X, Mail, Phone, MapPin, Loader2 } from "lucide-react"
 
 export default function ContactPage() {
   const router = useRouter()
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    budget: "",
+    message: "",
+  })
 
   useEffect(() => {
     const handleSplineEvent = (event: any) => {
@@ -29,18 +39,76 @@ export default function ContactPage() {
     }
   }, [router])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted")
-    setIsFormOpen(false)
+    setIsSubmitting(true)
+    setSubmitMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitMessage(result.message)
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          budget: "",
+          message: "",
+        })
+        setTimeout(() => {
+          setIsFormOpen(false)
+          setSubmitMessage("")
+        }, 3000)
+      } else {
+        setSubmitMessage(result.message)
+      }
+    } catch (error) {
+      setSubmitMessage("Sorry, there was an error sending your message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
   }
 
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <Header />
-      <div className="flex-1 w-full">
-        <Spline scene="/scenes/robo.splinecode" />
+      <div className="flex-1 w-full relative">
+        <div className="hidden md:block w-full h-full">
+          <Spline scene="/scenes/robo.splinecode" />
+        </div>
+
+        <div className="md:hidden w-full h-full bg-white flex items-center justify-center">
+          <div className="absolute inset-0">
+            <img
+              src="/modern-web-development-workspace-with-laptop-codin.jpg"
+              alt="Contact us - Web development consultation"
+              className="w-full h-full object-cover opacity-15"
+            />
+          </div>
+          <div className="text-center text-gray-900 px-6 animate-fade-in relative z-10">
+            <h1 className="font-heading font-black text-4xl sm:text-5xl mb-6 animate-slide-up">Get In Touch</h1>
+            <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-6 animate-slide-up-delay">
+              Ready to start your project? Let's discuss your vision
+            </p>
+          </div>
+        </div>
       </div>
 
       <Button
@@ -67,31 +135,75 @@ export default function ContactPage() {
                 </Button>
               </div>
 
+              {submitMessage && (
+                <div
+                  className={`mb-4 p-3 rounded-md ${submitMessage.includes("Thank you") ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}
+                >
+                  {submitMessage}
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                    <Input type="text" required className="w-full" placeholder="John" />
+                    <Input
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      className="w-full"
+                      placeholder="John"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                    <Input type="text" required className="w-full" placeholder="Doe" />
+                    <Input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      className="w-full"
+                      placeholder="Doe"
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <Input type="email" required className="w-full" placeholder="john@example.com" />
+                  <Input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full"
+                    placeholder="john@example.com"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                  <Input type="tel" className="w-full" placeholder="+1 (555) 123-4567" />
+                  <Input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full"
+                    placeholder="+1 (555) 123-4567"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Project Budget</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                  <select
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  >
                     <option value="">Select budget range</option>
                     <option value="5k-10k">$5,000 - $10,000</option>
                     <option value="10k-25k">$10,000 - $25,000</option>
@@ -102,11 +214,30 @@ export default function ContactPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <Textarea required rows={4} className="w-full" placeholder="Tell us about your project..." />
+                  <Textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="w-full"
+                    placeholder="Tell us about your project..."
+                  />
                 </div>
 
-                <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3">
-                  Send Message
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </Button>
               </form>
 
@@ -114,7 +245,7 @@ export default function ContactPage() {
                 <div className="space-y-3 text-sm text-gray-600">
                   <div className="flex items-center">
                     <Mail className="w-4 h-4 mr-3 text-purple-600" />
-                    hello@webdevcompany.com
+                    hello@kriptech.com
                   </div>
                   <div className="flex items-center">
                     <Phone className="w-4 h-4 mr-3 text-purple-600" />

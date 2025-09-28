@@ -61,8 +61,16 @@ export default function ServicesPage() {
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="hidden md:block absolute inset-0">
           <Spline scene="/scenes/space.splinecode" />
+        </div>
+
+        <div className="md:hidden absolute inset-0 bg-white">
+          <img
+            src="/ui-ux-design-wireframes-and-mockups-on-desk.jpg"
+            alt="Web development services"
+            className="w-full h-full object-cover opacity-20"
+          />
         </div>
 
         <Button
@@ -76,16 +84,42 @@ export default function ServicesPage() {
         </Button>
 
         {/* Content overlay */}
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="font-heading font-black text-5xl md:text-6xl mb-6">Our Services</h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed mb-8 text-white/90">
-            Comprehensive web development services designed to elevate your digital presence and drive business growth
-          </p>
-          <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
-            <Link href="#services">
-              Explore Services <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+        <div className="relative z-10 text-center text-gray-900 md:text-white px-4">
+          <div className="md:hidden animate-fade-in">
+            <div className="relative z-10">
+              <h1 className="font-heading font-black text-5xl mb-6 animate-slide-up">Our Services</h1>
+              <p className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-700 mb-8 animate-slide-up-delay">
+                Comprehensive web development services for your business
+              </p>
+              <div className="flex justify-center space-x-3 mb-6 animate-slide-up-delay-2">
+                <div className="w-4 h-4 border-2 border-blue-500 rotate-45 animate-subtle-rotate"></div>
+                <div
+                  className="w-4 h-4 border-2 border-green-500 rotate-45 animate-subtle-rotate"
+                  style={{ animationDelay: "0.3s" }}
+                ></div>
+                <div
+                  className="w-4 h-4 border-2 border-purple-500 rotate-45 animate-subtle-rotate"
+                  style={{ animationDelay: "0.6s" }}
+                ></div>
+              </div>
+              <Button asChild size="lg" className="bg-black text-white hover:bg-gray-800">
+                <Link href="#services">
+                  Explore Services <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <h1 className="font-heading font-black text-5xl md:text-6xl mb-6">Our Services</h1>
+            <p className="text-xl max-w-3xl mx-auto leading-relaxed mb-8 text-white/90">
+              Comprehensive web development services designed to elevate your digital presence and drive business growth
+            </p>
+            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
+              <Link href="#services">
+                Explore Services <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 

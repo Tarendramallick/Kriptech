@@ -15,7 +15,7 @@ export default function PortfolioPage() {
       category: "Corporate Website",
       description:
         "Modern corporate website with custom CMS and lead generation system. Built with performance and SEO in mind.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/techstart-corporate-website.jpg",
       technologies: ["React", "Next.js", "Tailwind CSS", "Sanity CMS"],
       duration: "6 weeks",
       teamSize: "3 developers",
@@ -27,7 +27,7 @@ export default function PortfolioPage() {
       category: "E-commerce Platform",
       description:
         "Full-featured online marketplace with multi-vendor support, payment integration, and advanced analytics dashboard.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/ecoshop-ecommerce-platform.jpg",
       technologies: ["Next.js", "Stripe", "PostgreSQL", "Redis"],
       duration: "12 weeks",
       teamSize: "5 developers",
@@ -39,7 +39,7 @@ export default function PortfolioPage() {
       category: "Health & Fitness",
       description:
         "Interactive wellness platform with booking system, member portal, and fitness tracking capabilities.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/fitlife-wellness-platform.jpg",
       technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
       duration: "8 weeks",
       teamSize: "4 developers",
@@ -51,7 +51,7 @@ export default function PortfolioPage() {
       category: "Creative Portfolio",
       description:
         "Stunning portfolio website for contemporary art gallery with virtual tours and immersive 3D experiences.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/artspace-gallery-portfolio.jpg",
       technologies: ["Vue.js", "Three.js", "Sanity CMS", "WebGL"],
       duration: "10 weeks",
       teamSize: "3 developers",
@@ -63,7 +63,7 @@ export default function PortfolioPage() {
       category: "Restaurant Website",
       description:
         "Restaurant website with online ordering, table reservations, and comprehensive menu management system.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/localeats-restaurant-website.jpg",
       technologies: ["React", "Express", "Square API", "Twilio"],
       duration: "5 weeks",
       teamSize: "2 developers",
@@ -75,7 +75,7 @@ export default function PortfolioPage() {
       category: "Educational Technology",
       description:
         "Comprehensive online learning platform with course management, student progress tracking, and interactive assessments.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/edulearn-platform.jpg",
       technologies: ["Next.js", "Prisma", "Vercel", "OpenAI API"],
       duration: "14 weeks",
       teamSize: "6 developers",
@@ -99,10 +99,14 @@ export default function PortfolioPage() {
       <Header />
 
       <section className="relative h-screen overflow-hidden">
-        <Spline
+        <div className="hidden md:block absolute inset-0 w-full h-full">
+          <Spline
           scene="/scenes/portfolio.splinecode"
           className="absolute inset-0 w-full h-full"
         />
+        </div>
+
+        <div className="md:hidden absolute inset-0 bg-white pattern-dots"></div>
 
         <Button
           asChild
@@ -115,18 +119,46 @@ export default function PortfolioPage() {
         </Button>
 
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-center text-white z-10 pointer-events-auto">
-            <h1 className="font-heading font-black text-6xl md:text-7xl mb-6">Our Portfolio</h1>
-            <p className="text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-              Explore our collection of successful projects and digital transformations
-            </p>
-            <Button
-              onClick={() => document.getElementById("portfolio-content")?.scrollIntoView({ behavior: "smooth" })}
-              size="lg"
-              className="bg-white text-black hover:bg-gray-100"
-            >
-              View Projects <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+          <div className="text-center text-gray-900 md:text-white z-10 pointer-events-auto">
+            <div className="md:hidden animate-fade-in">
+              <div className="relative z-10">
+                <h1 className="font-heading font-black text-6xl mb-6 animate-slide-up">Our Portfolio</h1>
+                <p className="text-xl max-w-2xl mx-auto leading-relaxed text-gray-700 mb-8 animate-slide-up-delay">
+                  Explore our successful projects and digital transformations
+                </p>
+                <div className="flex justify-center space-x-2 mb-6 animate-slide-up-delay-2">
+                  <div className="w-6 h-1 bg-blue-500 rounded animate-gentle-float"></div>
+                  <div
+                    className="w-6 h-1 bg-green-500 rounded animate-gentle-float"
+                    style={{ animationDelay: "0.3s" }}
+                  ></div>
+                  <div
+                    className="w-6 h-1 bg-purple-500 rounded animate-gentle-float"
+                    style={{ animationDelay: "0.6s" }}
+                  ></div>
+                </div>
+                <Button
+                  onClick={() => document.getElementById("portfolio-content")?.scrollIntoView({ behavior: "smooth" })}
+                  size="lg"
+                  className="bg-black text-white hover:bg-gray-800"
+                >
+                  View Projects <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <h1 className="font-heading font-black text-6xl md:text-7xl mb-6">Our Portfolio</h1>
+              <p className="text-xl max-w-2xl mx-auto leading-relaxed mb-8">
+                Explore our collection of successful projects and digital transformations
+              </p>
+              <Button
+                onClick={() => document.getElementById("portfolio-content")?.scrollIntoView({ behavior: "smooth" })}
+                size="lg"
+                className="bg-white text-black hover:bg-gray-100"
+              >
+                View Projects <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>

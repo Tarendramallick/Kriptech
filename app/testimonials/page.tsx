@@ -95,9 +95,11 @@ export default function TestimonialsPage() {
 
       {/* Hero Section with Spline */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="hidden md:block absolute inset-0">
           <Spline scene="/scenes/space.splinecode" />
         </div>
+
+        <div className="md:hidden absolute inset-0 bg-white pattern-grid"></div>
 
         {/* Get Started Button */}
         <Button
@@ -111,17 +113,49 @@ export default function TestimonialsPage() {
         </Button>
 
         {/* Content overlay with pointer events */}
-        <div className="relative z-10 text-center text-white px-4 pointer-events-none">
+        <div className="relative z-10 text-center text-gray-900 md:text-white px-4 pointer-events-none">
           <div className="pointer-events-auto">
-            <h1 className="font-heading font-black text-5xl md:text-6xl mb-6">Client Testimonials</h1>
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed mb-8 text-white/90">
-              Discover what our clients say about working with us and the results we've achieved together
-            </p>
-            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
-              <Link href="#testimonials">
-                View Testimonials <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+            <div className="md:hidden animate-fade-in">
+              <div className="relative z-10">
+                <h1 className="font-heading font-black text-5xl mb-6 animate-slide-up">Client Testimonials</h1>
+                <p className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-700 mb-8 animate-slide-up-delay">
+                  Discover what our clients say about working with us
+                </p>
+                <div className="flex justify-center space-x-2 mb-6 animate-slide-up-delay-2">
+                  <div className="w-6 h-6 bg-yellow-400 rounded-full animate-gentle-float">
+                    <div className="w-full h-full flex items-center justify-center text-white text-xs font-bold">★</div>
+                  </div>
+                  <div
+                    className="w-6 h-6 bg-yellow-400 rounded-full animate-gentle-float"
+                    style={{ animationDelay: "0.2s" }}
+                  >
+                    <div className="w-full h-full flex items-center justify-center text-white text-xs font-bold">★</div>
+                  </div>
+                  <div
+                    className="w-6 h-6 bg-yellow-400 rounded-full animate-gentle-float"
+                    style={{ animationDelay: "0.4s" }}
+                  >
+                    <div className="w-full h-full flex items-center justify-center text-white text-xs font-bold">★</div>
+                  </div>
+                </div>
+                <Button asChild size="lg" className="bg-black text-white hover:bg-gray-800">
+                  <Link href="#testimonials">
+                    View Testimonials <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <h1 className="font-heading font-black text-5xl md:text-6xl mb-6">Client Testimonials</h1>
+              <p className="text-xl max-w-3xl mx-auto leading-relaxed mb-8 text-white/90">
+                Discover what our clients say about working with us and the results we've achieved together
+              </p>
+              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
+                <Link href="#testimonials">
+                  View Testimonials <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ export function AboutSection() {
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="font-heading font-black text-4xl md:text-5xl mb-6 text-foreground">About WebCraft Studios</h2>
+          <h2 className="font-heading font-black text-4xl md:text-5xl mb-6 text-foreground">About Kriptech</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We are a passionate team of web developers dedicated to transforming your ideas into stunning digital
             experiences. With years of expertise and a commitment to excellence, we deliver websites that not only look

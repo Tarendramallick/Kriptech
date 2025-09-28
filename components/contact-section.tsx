@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,12 +17,36 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    // Reset form
-    setFormData({ name: "", email: "", company: "", message: "" })
+    setIsSubmitting(true)
+    setSubmitMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitMessage(result.message)
+        setFormData({ name: "", email: "", company: "", message: "" })
+      } else {
+        setSubmitMessage(result.message)
+      }
+    } catch (error) {
+      setSubmitMessage("Sorry, there was an error sending your message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -55,7 +79,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Email Us</div>
-                  <div className="text-muted-foreground">hello@webcraft-studios.com</div>
+                  <div className="text-muted-foreground">hello@kriptech.com</div>
                 </div>
               </div>
 
@@ -81,7 +105,7 @@ export function ContactSection() {
             </div>
 
             <div className="bg-primary/5 p-6 rounded-lg">
-              <h4 className="font-heading font-bold text-lg mb-3">Why Choose Us?</h4>
+              <h4 className="font-heading font-bold text-lg mb-3">Why Choose Kriptech?</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li>• Free initial consultation</li>
                 <li>• 30-day money-back guarantee</li>
@@ -93,6 +117,14 @@ export function ContactSection() {
 
           <Card>
             <CardContent className="p-8">
+              {submitMessage && (
+                <div
+                  className={`mb-6 p-4 rounded-md ${submitMessage.includes("Thank you") ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`}
+                >
+                  {submitMessage}
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -152,9 +184,22 @@ export function ContactSection() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-primary hover:bg-accent transition-colors text-lg py-6">
-                  Send Message
-                  <Send className="ml-2 h-5 w-5" />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-accent transition-colors text-lg py-6"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending Message...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
               </form>
             </CardContent>

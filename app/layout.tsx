@@ -19,10 +19,16 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "WebCraft Studios - Professional Web Development",
+  title: "Kriptech - Professional Web Development Solutions",
   description:
-    "Expert web development solutions tailored for your business. We craft your vision into reality with stunning, functional websites.",
+    "Expert web development solutions tailored for your business. Kriptech crafts your vision into reality with stunning, functional websites.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  other: {
+    preconnect: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+  },
 }
 
 export default function RootLayout({
@@ -33,10 +39,6 @@ export default function RootLayout({
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
       <html lang="en" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        </head>
         <body className="font-body">{children}</body>
       </html>
     </ThemeProvider>
